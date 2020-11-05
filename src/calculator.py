@@ -38,8 +38,8 @@ def conversion(title, summary):
         elif key == 'modalità':
             data['modality'] = value
             if value.count('DALLE') == 1:
-                data['start_time'] = extract_time(' DALLE', value)
-                data['end_time'] = extract_time(' ALLE', value)
+                data['start_time'] = extract_time(' DALLE', value).strip()
+                data['end_time'] = extract_time(' ALLE', value).strip()
             else:
                 data['start_time'] = None
                 data['end_time'] = None
