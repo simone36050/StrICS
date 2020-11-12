@@ -97,7 +97,7 @@ def convert_to_ics(event):
 
     return ev
 
-def get_default(event, key, default='<vuoto>'):
+def get_default(event, key, default='[vuoto]'):
     if key in event:
         return event[key]
     return default
