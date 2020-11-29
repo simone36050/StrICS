@@ -37,7 +37,7 @@ def conversion(title, summary):
             data['province'] = value
         elif key == 'modalità':
             data['modality'] = value
-            if value.count('DALLE') == 1:
+            if value.count('DALLE') == 1 and value.count(' ALLE') == 1:
                 data['start_time'] = extract_time(' DALLE', value).strip()
                 data['end_time'] = extract_time(' ALLE', value).strip()
             else:
