@@ -85,10 +85,20 @@ def convert_to_ics(event):
         ev.name = "Sciopero {} {} ({})".format(event['sector'], event['region'], event['province'])
 
     # date and time
-    ev.begin = convert_format(event['start_date'], event['start_time'])
-    ev.end = convert_format(event['end_date'], event['end_time'])
-    if event['start_time'] == None:
+    begin = convert_format(event['start_date'], event['start_time'])
+    end = convert_format(event['end_date'], event['end_time'])
+
+    ev.begin = begin
+
+    if end < begin:
+        # error on end date
+        ev.end = begin
         ev.make_all_day()
+    else:
+        # end date is ok
+        ev.end = end
+        if event['start_time'] == None:
+            ev.make_all_day()
 
     # description
     ev.description = DESCRIPTION.format(get_default(event, 'modality'), get_default(event, 'labor_unions'), 
